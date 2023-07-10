@@ -6,20 +6,20 @@ import { useRouter } from "next/navigation";
 
 const AddTodo = () => {
     const [task, setTask] = useState<NewTodo | null>(null);
-    const { refresh } = useRouter();
+    const router = useRouter();
 
 
     const handleSubmit = async () => {
         try {
             if (task) {
-                const res = await fetch("http://127.0.0.1:3000/api/todo", {
+                const res = await fetch("http://localhost:3000/api/todo", {
                     method: "POST",
                     body: JSON.stringify({
                         task: task.task
                     }),
 
                 })                
-                refresh();
+                router.refresh();
             }
         } catch (error) {
             console.log("error")
